@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FocusAgenda | Mi Agenda Personal</title>
+    <title>FocusAgenda | Control Total</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
@@ -19,31 +19,15 @@
                 <div class="bg-blue-600 w-16 h-16 rounded-2xl flex items-center justify-center mx-auto mb-4 rotate-3 shadow-lg">
                     <i class="fas fa-check-double text-white text-2xl"></i>
                 </div>
-                <h2 id="auth-title" class="text-3xl font-bold text-gray-800">Bienvenido</h2>
-                <p id="auth-subtitle" class="text-gray-500">Gestiona tus prioridades hoy</p>
+                <h2 class="text-3xl font-bold text-gray-800">FocusAgenda</h2>
+                <p class="text-gray-500">Ingresa a tu espacio personal</p>
             </div>
-            
             <div class="space-y-4">
-                <div>
-                    <label class="block text-xs font-bold text-gray-400 uppercase mb-1 ml-1">Usuario</label>
-                    <input type="text" id="username" placeholder="Ej: juan_perez" class="w-full p-3 border rounded-xl focus:ring-2 focus:ring-blue-400 outline-none transition-all">
-                </div>
-                <div>
-                    <label class="block text-xs font-bold text-gray-400 uppercase mb-1 ml-1">Contraseña</label>
-                    <input type="password" id="password" placeholder="••••••••" class="w-full p-3 border rounded-xl focus:ring-2 focus:ring-blue-400 outline-none transition-all">
-                </div>
-                
+                <input type="text" id="username" placeholder="Usuario" class="w-full p-3 border rounded-xl outline-none focus:ring-2 focus:ring-blue-400">
+                <input type="password" id="password" placeholder="Contraseña" class="w-full p-3 border rounded-xl outline-none focus:ring-2 focus:ring-blue-400">
                 <div class="flex flex-col gap-3 pt-2">
-                    <button onclick="handleAuth('login')" class="w-full bg-blue-600 text-white p-3 rounded-xl font-bold hover:bg-blue-700 transition-all shadow-md active:scale-95">
-                        Iniciar Sesión
-                    </button>
-                    <div class="relative py-2">
-                        <div class="absolute inset-0 flex items-center"><div class="w-full border-t border-gray-200"></div></div>
-                        <div class="relative flex justify-center text-xs uppercase"><span class="bg-white px-2 text-gray-400">¿Eres nuevo?</span></div>
-                    </div>
-                    <button onclick="handleAuth('register')" class="w-full bg-emerald-50 text-emerald-600 p-3 rounded-xl font-bold hover:bg-emerald-100 transition-all border border-emerald-200">
-                        Crear Cuenta Gratis
-                    </button>
+                    <button onclick="handleAuth('login')" class="w-full bg-blue-600 text-white p-3 rounded-xl font-bold hover:bg-blue-700 transition active:scale-95 shadow-md">Entrar</button>
+                    <button onclick="handleAuth('register')" class="w-full bg-emerald-50 text-emerald-600 p-3 rounded-xl font-bold hover:bg-emerald-100 border border-emerald-200">Registrarse</button>
                 </div>
             </div>
         </div>
@@ -51,30 +35,25 @@
 
     <div id="agenda-screen" class="hidden">
         <nav class="bg-white border-b p-4 sticky top-0 z-10 shadow-sm">
-            <div class="container mx-auto flex justify-between items-center px-2">
+            <div class="container mx-auto flex justify-between items-center">
                 <div class="flex items-center gap-2">
                     <span class="bg-blue-600 text-white p-1.5 rounded-lg"><i class="fas fa-calendar-day"></i></span>
                     <h1 class="text-xl font-black text-gray-800 tracking-tight">FocusAgenda</h1>
                 </div>
                 <div class="flex items-center gap-4">
                     <span id="user-display" class="hidden sm:inline text-gray-600 font-semibold bg-gray-100 px-3 py-1 rounded-full text-sm"></span>
-                    <button onclick="logout()" class="text-gray-400 hover:text-red-500 transition-colors">
-                        <i class="fas fa-power-off text-lg"></i>
-                    </button>
+                    <button onclick="logout()" class="text-gray-400 hover:text-red-500 transition-colors"><i class="fas fa-power-off text-lg"></i></button>
                 </div>
             </div>
         </nav>
 
         <div class="container mx-auto p-4 max-w-5xl">
-            <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-200 mb-8 mt-4">
-                <div class="flex items-center gap-2 mb-4 border-b pb-2">
-                    <i class="fas fa-plus-circle text-blue-500"></i>
-                    <h3 id="form-title" class="text-lg font-bold text-gray-800">Nueva Tarea</h3>
-                </div>
+            <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-200 mb-6 mt-4">
+                <h3 id="form-title" class="text-lg font-bold text-gray-800 mb-4 border-b pb-2">Nueva Tarea</h3>
                 <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
                     <div class="md:col-span-2">
-                        <label class="block text-xs font-bold text-gray-500 uppercase mb-1">Detalle de la prioridad</label>
-                        <input type="text" id="task-detail" placeholder="Ej: Terminar informe mensual" class="w-full p-2.5 border rounded-lg focus:ring-2 focus:ring-blue-400 outline-none">
+                        <label class="block text-xs font-bold text-gray-500 uppercase mb-1">Detalle</label>
+                        <input type="text" id="task-detail" placeholder="¿Qué hay que hacer?" class="w-full p-2.5 border rounded-lg focus:ring-2 focus:ring-blue-400 outline-none">
                     </div>
                     <div>
                         <label class="block text-xs font-bold text-gray-500 uppercase mb-1">Fecha Límite</label>
@@ -89,13 +68,24 @@
                         </select>
                     </div>
                 </div>
-                <div class="mt-4 flex flex-wrap gap-2">
-                    <button onclick="saveTask()" id="btn-save" class="bg-blue-600 text-white px-8 py-2.5 rounded-lg font-bold hover:bg-blue-700 transition shadow-md active:scale-95">
-                        Guardar Tarea
-                    </button>
-                    <button id="btn-cancel" onclick="clearForm()" class="hidden bg-gray-100 text-gray-500 px-8 py-2.5 rounded-lg font-bold hover:bg-gray-200 transition">
-                        Cancelar
-                    </button>
+                <div class="mt-4 flex gap-2">
+                    <button onclick="saveTask()" id="btn-save" class="bg-blue-600 text-white px-8 py-2.5 rounded-lg font-bold hover:bg-blue-700 transition active:scale-95">Guardar</button>
+                    <button id="btn-cancel" onclick="clearForm()" class="hidden bg-gray-100 text-gray-500 px-8 py-2.5 rounded-lg font-bold">Cancelar</button>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+                <div class="relative">
+                    <i class="fas fa-search absolute left-3 top-3.5 text-gray-400"></i>
+                    <input type="text" id="search-input" oninput="renderTasks()" placeholder="Buscar en mis tareas..." class="w-full pl-10 pr-4 py-2.5 rounded-xl border border-gray-200 focus:ring-2 focus:ring-blue-400 outline-none shadow-sm">
+                </div>
+                <div class="flex items-center gap-2 bg-white px-4 py-2 rounded-xl border border-gray-200 shadow-sm">
+                    <label class="text-xs font-bold text-gray-400 uppercase whitespace-nowrap">Ordenar por:</label>
+                    <select id="sort-filter" onchange="renderTasks()" class="w-full text-sm outline-none bg-transparent font-semibold text-gray-700">
+                        <option value="created">Más recientes</option>
+                        <option value="deadline">Fecha de Vencimiento</option>
+                        <option value="priority">Prioridad (Alta primero)</option>
+                    </select>
                 </div>
             </div>
 
@@ -105,17 +95,16 @@
                         <thead class="bg-gray-50 border-b">
                             <tr>
                                 <th class="p-4 text-xs font-bold text-gray-400 uppercase w-16 text-center">OK</th>
-                                <th class="p-4 text-xs font-bold text-gray-400 uppercase">Tarea / Prioridad</th>
-                                <th class="p-4 text-xs font-bold text-gray-400 uppercase hidden md:table-cell">Registrada</th>
+                                <th class="p-4 text-xs font-bold text-gray-400 uppercase">Tarea</th>
                                 <th class="p-4 text-xs font-bold text-gray-400 uppercase">Vencimiento</th>
                                 <th class="p-4 text-xs font-bold text-gray-400 uppercase text-center">Acciones</th>
                             </tr>
                         </thead>
-                        <tbody id="task-list" class="divide-y divide-gray-100">
-                            </tbody>
+                        <tbody id="task-list" class="divide-y divide-gray-100"></tbody>
                     </table>
                 </div>
             </div>
+            <p id="stats" class="mt-4 text-center text-xs font-bold text-gray-400 uppercase tracking-widest"></p>
         </div>
     </div>
 
@@ -124,50 +113,31 @@
         let tasks = [];
         let editIndex = null;
 
-        // --- SISTEMA DE AUTENTICACIÓN ---
         function handleAuth(type) {
             const user = document.getElementById('username').value.trim().toLowerCase();
             const pass = document.getElementById('password').value.trim();
-
-            if (!user || !pass) {
-                alert("⚠️ Por favor completa los campos.");
-                return;
-            }
-
+            if (!user || !pass) return alert("Completa los campos");
             let users = JSON.parse(localStorage.getItem('agenda_app_users')) || {};
-
             if (type === 'register') {
-                if (users[user]) {
-                    alert("❌ Este usuario ya existe.");
-                } else {
-                    users[user] = pass;
-                    localStorage.setItem('agenda_app_users', JSON.stringify(users));
-                    alert("✅ ¡Registro exitoso! Ya puedes entrar.");
-                }
+                if (users[user]) return alert("Usuario existe");
+                users[user] = pass;
+                localStorage.setItem('agenda_app_users', JSON.stringify(users));
+                alert("¡Cuenta creada!");
             } else {
-                if (users[user] && users[user] === pass) {
+                if (users[user] === pass) {
                     currentUser = user;
                     document.getElementById('user-display').innerText = `Usuario: ${user}`;
                     document.getElementById('login-screen').classList.add('hidden');
                     document.getElementById('agenda-screen').classList.remove('hidden');
                     loadTasks();
-                } else {
-                    alert("❌ Credenciales incorrectas.");
-                }
+                } else alert("Datos incorrectos");
             }
         }
 
-        function logout() {
-            currentUser = null;
-            document.getElementById('login-screen').classList.remove('hidden');
-            document.getElementById('agenda-screen').classList.add('hidden');
-            document.getElementById('password').value = '';
-        }
+        function logout() { location.reload(); }
 
-        // --- LÓGICA DE LA AGENDA ---
         function loadTasks() {
-            const stored = localStorage.getItem(`tasks_${currentUser}`);
-            tasks = stored ? JSON.parse(stored) : [];
+            tasks = JSON.parse(localStorage.getItem(`tasks_${currentUser}`)) || [];
             renderTasks();
         }
 
@@ -175,119 +145,92 @@
             const detail = document.getElementById('task-detail').value.trim();
             const deadline = document.getElementById('task-deadline').value;
             const priority = document.getElementById('task-priority').value;
-
-            if (!detail) return alert("Escribe un detalle para la tarea");
-
-            const taskData = {
-                detail,
-                deadline: deadline || 'Sin fecha',
-                priority,
-                created: new Date().toLocaleDateString(),
-                completed: false
-            };
+            if (!detail) return;
 
             if (editIndex !== null) {
-                tasks[editIndex] = { ...tasks[editIndex], detail, deadline, priority };
+                const idx = tasks.findIndex(t => t.id === editIndex);
+                tasks[idx] = { ...tasks[idx], detail, deadline: deadline || '9999-12-31', priority };
                 editIndex = null;
             } else {
-                tasks.push(taskData);
+                tasks.push({ id: Date.now(), detail, deadline: deadline || '9999-12-31', priority, created: Date.now(), completed: false });
             }
-
-            updateStorage();
-            renderTasks();
-            clearForm();
+            updateStorage(); renderTasks(); clearForm();
         }
 
         function renderTasks() {
             const list = document.getElementById('task-list');
-            list.innerHTML = '';
-
-            const badgeStyles = {
-                'Alta': 'bg-red-100 text-red-600 border-red-200',
-                'Media': 'bg-amber-100 text-amber-600 border-amber-200',
-                'Baja': 'bg-blue-100 text-blue-600 border-blue-200'
-            };
-
-            if (tasks.length === 0) {
-                list.innerHTML = `<tr><td colspan="5" class="p-10 text-center text-gray-400 italic">No tienes tareas pendientes. ¡Buen trabajo!</td></tr>`;
-                return;
-            }
-
-            tasks.forEach((task, index) => {
-                const badgeClass = badgeStyles[task.priority] || '';
-                
-                list.innerHTML += `
-                    <tr class="hover:bg-slate-50 transition-all ${task.completed ? 'bg-gray-50' : ''}">
-                        <td class="p-4 text-center">
-                            <input type="checkbox" ${task.completed ? 'checked' : ''} 
-                                   onchange="toggleTask(${index})" 
-                                   class="w-5 h-5 accent-blue-600 cursor-pointer rounded">
-                        </td>
-                        <td class="p-4">
-                            <div class="font-bold ${task.completed ? 'completed text-gray-400' : 'text-gray-700'}">
-                                ${task.detail}
-                            </div>
-                            <span class="inline-block px-2 py-0.5 mt-1 text-[10px] font-black rounded border ${badgeClass}">
-                                ${task.priority.toUpperCase()}
-                            </span>
-                        </td>
-                        <td class="p-4 text-xs text-gray-400 hidden md:table-cell">${task.created}</td>
-                        <td class="p-4 text-sm font-semibold ${task.completed ? 'text-gray-300' : 'text-gray-600'}">
-                            <i class="far fa-calendar-alt mr-1 opacity-50"></i> ${task.deadline}
-                        </td>
-                        <td class="p-4">
-                            <div class="flex justify-center gap-3">
-                                <button onclick="editTask(${index})" class="text-blue-400 hover:text-blue-600 transition-all" title="Editar">
-                                    <i class="fas fa-pen"></i>
-                                </button>
-                                <button onclick="deleteTask(${index})" class="text-red-300 hover:text-red-500 transition-all" title="Eliminar">
-                                    <i class="fas fa-trash"></i>
-                                </button>
-                            </div>
-                        </td>
-                    </tr>
-                `;
-            });
-        }
-
-        function toggleTask(index) {
-            tasks[index].completed = !tasks[index].completed;
-            updateStorage();
-            renderTasks();
-        }
-
-        function deleteTask(index) {
-            if(confirm("¿Eliminar esta tarea definitivamente?")) {
-                tasks.splice(index, 1);
-                updateStorage();
-                renderTasks();
-            }
-        }
-
-        function editTask(index) {
-            editIndex = index;
-            const t = tasks[index];
-            document.getElementById('task-detail').value = t.detail;
-            document.getElementById('task-deadline').value = t.deadline === 'Sin fecha' ? '' : t.deadline;
-            document.getElementById('task-priority').value = t.priority;
+            const sortVal = document.getElementById('sort-filter').value;
+            const searchVal = document.getElementById('search-input').value.toLowerCase();
             
-            document.getElementById('btn-save').innerText = "Actualizar Tarea";
-            document.getElementById('form-title').innerText = "Modificar Prioridad";
+            // Filtrar por búsqueda
+            let filtered = tasks.filter(t => t.detail.toLowerCase().includes(searchVal));
+
+            // Ordenar
+            if (sortVal === 'deadline') filtered.sort((a,b) => a.deadline.localeCompare(b.deadline));
+            else if (sortVal === 'priority') {
+                const pMap = { 'Alta': 1, 'Media': 2, 'Baja': 3 };
+                filtered.sort((a,b) => pMap[a.priority] - pMap[b.priority]);
+            } else filtered.sort((a,b) => b.created - a.created);
+
+            list.innerHTML = '';
+            const badgeStyles = { 'Alta': 'bg-red-100 text-red-600 border-red-200', 'Media': 'bg-amber-100 text-amber-600 border-amber-200', 'Baja': 'bg-blue-100 text-blue-600 border-blue-200' };
+
+            filtered.forEach(task => {
+                const isLate = !task.completed && task.deadline !== '9999-12-31' && new Date(task.deadline) < new Date().setHours(0,0,0,0);
+                list.innerHTML += `
+                    <tr class="hover:bg-slate-50 transition-all">
+                        <td class="p-4 text-center">
+                            <input type="checkbox" ${task.completed ? 'checked' : ''} onchange="toggleTask(${task.id})" class="w-5 h-5 accent-blue-600 cursor-pointer">
+                        </td>
+                        <td class="p-4">
+                            <div class="font-bold ${task.completed ? 'completed text-gray-400' : 'text-gray-700'}">${task.detail}</div>
+                            <span class="inline-block px-2 py-0.5 mt-1 text-[10px] font-black rounded border ${badgeStyles[task.priority]}">${task.priority}</span>
+                        </td>
+                        <td class="p-4 text-sm ${isLate ? 'text-red-500 font-bold' : 'text-gray-500'}">
+                            ${task.deadline === '9999-12-31' ? 'Sin fecha' : task.deadline}
+                        </td>
+                        <td class="p-4 text-center">
+                            <div class="flex justify-center gap-3">
+                                <button onclick="editTask(${task.id})" class="text-blue-400 hover:text-blue-600"><i class="fas fa-pen"></i></button>
+                                <button onclick="deleteTask(${task.id})" class="text-red-300 hover:text-red-500"><i class="fas fa-trash"></i></button>
+                            </div>
+                        </td>
+                    </tr>`;
+            });
+            document.getElementById('stats').innerText = `${filtered.length} tareas encontradas`;
+        }
+
+        function toggleTask(id) {
+            const idx = tasks.findIndex(t => t.id === id);
+            tasks[idx].completed = !tasks[idx].completed;
+            updateStorage(); renderTasks();
+        }
+
+        function deleteTask(id) {
+            if(confirm("¿Eliminar tarea?")) {
+                tasks = tasks.filter(t => t.id !== id);
+                updateStorage(); renderTasks();
+            }
+        }
+
+        function editTask(id) {
+            const t = tasks.find(t => t.id === id);
+            editIndex = id;
+            document.getElementById('task-detail').value = t.detail;
+            document.getElementById('task-deadline').value = t.deadline === '9999-12-31' ? '' : t.deadline;
+            document.getElementById('task-priority').value = t.priority;
+            document.getElementById('btn-save').innerText = "Actualizar";
             document.getElementById('btn-cancel').classList.remove('hidden');
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
-        function updateStorage() {
-            localStorage.setItem(`tasks_${currentUser}`, JSON.stringify(tasks));
-        }
-
+        function updateStorage() { localStorage.setItem(`tasks_${currentUser}`, JSON.stringify(tasks)); }
         function clearForm() {
             editIndex = null;
             document.getElementById('task-detail').value = '';
             document.getElementById('task-deadline').value = '';
             document.getElementById('task-priority').value = 'Media';
-            document.getElementById('btn-save').innerText = "Guardar Tarea";
-            document.getElementById('form-title').innerText = "Nueva Tarea";
+            document.getElementById('btn-save').innerText = "Guardar";
             document.getElementById('btn-cancel').classList.add('hidden');
         }
     </script>

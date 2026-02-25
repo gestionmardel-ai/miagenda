@@ -1,1 +1,84 @@
-k
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Purchase Orders</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+        body { font-family: Arial, sans-serif; }
+        header, footer { padding: 10px; background: #f4f4f4; }
+        table { width: 100%; border-collapse: collapse; margin: 20px 0; }
+        th, td { padding: 10px; border: 1px solid #ddd; }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Purchase Orders</h1>
+        <p>Date: <span id="currentDate"></span></p>
+        <p>Delivery Date: <input type="date" id="deliveryDate"></p>
+        <p>Provider: 
+            <select id="providerDropdown"><option>Select Provider</option></select>
+        </p>
+        <p>Order ID: <input type="text" id="orderId" readonly></p>
+    </header>
+    <table>
+        <thead>
+            <tr>
+                <th>Merchandise</th>
+                <th>Quantity</th>
+                <th>Unit of Measure</th>
+                <th>Observations</th>
+            </tr>
+        </thead>
+        <tbody id="orderTable">
+            <tr>
+                <td>
+                    <select class="merchandiseDropdown"><option>Select Merchandise</option></select>
+                </td>
+                <td><input type="number" class="quantity"></td>
+                <td><input type="text" class="unitOfMeasure"></td>
+                <td><input type="text" class="observations"></td>
+            </tr>
+        </tbody>
+    </table>
+    <footer>
+        <p>Created by: DASantini_ODC</p>
+        <p>Creation Date and Time: 2026-02-25 03:26:32</p>
+        <button id="newOrder">New Order</button>
+        <button id="generateReport">Generate PDF/TXT Report</button>
+    </footer>
+    <script>
+        $(document).ready(function() {
+            // Set current date
+            $('#currentDate').text(new Date().toISOString().split('T')[0]);
+            // Auto-generate Order ID
+            $('#orderId').val(Date.now());
+
+            // Example for dynamic merchandise dropdown
+            const merchandiseList = ['Item1', 'Item2', 'Item3'];
+            merchandiseList.forEach(item => {
+                $('.merchandiseDropdown').append(new Option(item, item));
+            });
+
+            $('#newOrder').click(function() {
+                $('#orderTable').append(`<tr>\n                    <td>\n                        <select class='merchandiseDropdown'><option>Select Merchandise</option></select>\n                    </td>\n                    <td><input type='number' class='quantity'></td>\n                    <td><input type='text' class='unitOfMeasure'></td>\n                    <td><input type='text' class='observations'></td>\n                </tr>`);
+            });
+
+            // Local Storage Example
+            $('#generateReport').click(function() {
+                const orders = [];
+                $('#orderTable tr').each(function() {
+                    const merchandise = $(this).find('.merchandiseDropdown').val();
+                    const quantity = $(this).find('.quantity').val();
+                    const unit = $(this).find('.unitOfMeasure').val();
+                    const observation = $(this).find('.observations').val();
+                    orders.push({ merchandise, quantity, unit, observation });
+                });
+                localStorage.setItem('orders', JSON.stringify(orders));
+                alert('Report generated and saved to local storage!');
+            });
+        });
+    </script>
+</body>
+</html>
